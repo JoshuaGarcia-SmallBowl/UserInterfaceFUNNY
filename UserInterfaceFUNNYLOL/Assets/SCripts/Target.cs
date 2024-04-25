@@ -11,18 +11,28 @@ public class Target : MonoBehaviour
     private float maxTorque = 10;
     private float xRange = 4;
     private float ySpawnPos = -6;
-
+    private gameManager gameManager;
+    public ParticleSystem particles;
+    public GameObject spawnPrefab;
     //characteristic
 
+    public int points = 1;
     public int health = 1;
+    public float startthrow;
+    public bool split;
 
     // Start is called before the first frame update
     void Start()
     {
         targetRb = GetComponent<Rigidbody>();
-        targetRb.AddForce(RandomForce(), ForceMode.Impulse);
+        targetRb.AddForce(RandomForce() * startthrow, ForceMode.Impulse);
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-        transform.position = RandomSpawnPos();
+        if (startthrow == 1.0f)
+        {
+            transform.position = RandomSpawnPos();
+        }
+        
+        gameManager = GameObject.Find("Manager").GetComponent<gameManager>();
     }
 
     // Update is called once per frame
@@ -45,7 +55,7 @@ public class Target : MonoBehaviour
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
     }
 
-    private void OnMouseDown() 
+    private void OnMouseDown()
     {
         //subtract health by one
         health--;
@@ -53,18 +63,33 @@ public class Target : MonoBehaviour
         if (health == 0)
         {
             Destroy(gameObject);
+            gameManager.updateScore(points);
+            Instantiate(particles, transform.position, particles.transform.rotation);
+            //If a splitter, split
+            if (split)
+            {
+                Split();
+            }
+            //otherwise go through every check
+            
         }
-        //otherwise go through every check
         else
         {
             targetRb.velocity = Vector3.zero;
             targetRb.AddForce(Vector3.up * 6, ForceMode.Impulse);
         }
-        
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        Destroy(gameObject);
-    }
+        private void OnTriggerEnter(Collider other)
+        {
+            Destroy(gameObject);
+        }
+
+        private void Split()
+        {
+            Instantiate(spawnPrefab, new(transform.position.x - 1, transform.position.y, transform.position.z), transform.rotation);
+            Instantiate(spawnPrefab, new(transform.position.x + 1, transform.position.y, transform.position.z), transform.rotation);
+        }
+    
 }
+
