@@ -20,6 +20,7 @@ public class Target : MonoBehaviour
     public int health = 1;
     public float startthrow;
     public bool split;
+    public int damage = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -57,33 +58,42 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //subtract health by one
-        health--;
-        //destroy if no more health is left
-        if (health == 0)
+        if (gameManager.active)
         {
-            Destroy(gameObject);
-            gameManager.updateScore(points);
-            Instantiate(particles, transform.position, particles.transform.rotation);
-            //If a splitter, split
-            if (split)
+            //subtract health by one
+            health--;
+            //destroy if no more health is left
+            if (health == 0)
             {
-                Split();
-            }
-            //otherwise go through every check
-            
-        }
-        else
-        {
-            targetRb.velocity = Vector3.zero;
-            targetRb.AddForce(Vector3.up * 6, ForceMode.Impulse);
-        }
+                Destroy(gameObject);
+                gameManager.updateScore(points);
+                Instantiate(particles, transform.position, particles.transform.rotation);
+                //If a splitter, split
+                if (split)
+                {
+                    Split();
+                }
+                //otherwise go through every check
 
+            }
+            else
+            {
+                targetRb.velocity = Vector3.zero;
+                targetRb.AddForce(Vector3.up * 6, ForceMode.Impulse);
+            }
+        }         
     }
         private void OnTriggerEnter(Collider other)
         {
+       if (other.CompareTag("end"))
+        {
             Destroy(gameObject);
+            if (!gameObject.CompareTag("bad"))
+            {
+                gameManager.gameOver(damage);
+            }
         }
+    }
 
         private void Split()
         {

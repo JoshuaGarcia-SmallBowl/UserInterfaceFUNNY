@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 2028985057406548263}
   m_Layer: 0
   m_Name: GChick
-  m_TagString: Untagged
+  m_TagString: good
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,7 +760,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -783,6 +783,8 @@ MonoBehaviour:
   points: 1
   health: 1
   startthrow: 1
+  split: 0
+  damage: 1
 --- !u!1 &5702909887562415422
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5772307036201148494}
   m_Layer: 0
   m_Name: adksao
-  m_TagString: Untagged
+  m_TagString: good
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -146,9 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66aa2f5fc9e559644a85e63fe49565ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: {fileID: 6601538019107920666, guid: 70a1428e5f80a4866a779ef1ab9fe521, type: 3}
+  particles: {fileID: 7303472089845130122, guid: 6cbc21f5e9162483993a2b84b14d5ac8, type: 3}
   spawnPrefab: {fileID: 9063995117531080112, guid: 6d4d1368e4b70014cbb88222ba6c3ed8, type: 3}
   points: 5
   health: 1
   startthrow: 1
   split: 0
+  damage: 1
