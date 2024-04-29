@@ -152,4 +152,6 @@ MonoBehaviour:
   health: 1
   startthrow: 1
   split: 0
-  damage: -1
+  damage: 0
+  dodge: 0
+  healAmt: 1

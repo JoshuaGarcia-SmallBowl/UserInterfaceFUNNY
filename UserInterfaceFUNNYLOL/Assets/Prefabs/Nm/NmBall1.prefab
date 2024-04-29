@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 6601538019107920666, guid: 70a1428e5f80a4866a779ef1ab9fe521, type: 3}
   spawnPrefab: {fileID: 9063995117531080112, guid: 92938dd82eb0fa244ac022114c017f5b, type: 3}
-  points: 1
+  points: 5
   health: 1
   startthrow: 1
   split: 1

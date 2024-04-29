@@ -10,11 +10,16 @@ public class gameManager : MonoBehaviour
     public GameObject[] targets;
     public GameObject[] nmTargets;
     private bool nightmare = false;
+    public GameObject pauseScreen;
+    private bool paused;
+    public AudioClip funny;
+    private AudioSource source;
 
     private float spawnRate = 1.0f;
     private int score = 0;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI livesText;
     public bool active = false;
     private int health = 5;
     public GameObject title;
@@ -26,13 +31,16 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        source = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       if (Input.GetKeyDown(KeyCode.F))
+        {
+            ChangePaused();
+        } 
     }
 
     IEnumerator SpawnTarget()
@@ -49,12 +57,16 @@ public class gameManager : MonoBehaviour
                 {
                     Instantiate(nmTargets[nmIndex]);
                     nmCap = 10;
-                    nmCooldown = 10;
+                    nmCooldown = 12;
                 }
                 else
                 {
-                    Instantiate(targets[index]);
-                    nmCap--;
+                    if (nmCooldown <= 10)
+                    {
+                        Instantiate(targets[index]);
+                        nmCap--;
+                    }
+                    
                     if (nmCooldown != 0)
                     {
                         nmCooldown--;
@@ -76,17 +88,23 @@ public class gameManager : MonoBehaviour
 
     public void gameOver(int val)
     {
+        
+        
+            
+        
         health -= val;
+        Debug.Log(health);
         if (health == 0)
         {
             gameOverText.gameObject.SetActive(true);
             active = false;
         }
-        
+        livesText.text = "Lives: " + health;
     }
 
     public void restartGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -95,14 +113,38 @@ public class gameManager : MonoBehaviour
         spawnRate *= difficulty;
         active = true;
         scoreText.gameObject.SetActive(true);
+        livesText.gameObject.SetActive(true);
         StartCoroutine(SpawnTarget());
         Destroy(title);
         if (nm)
         {
+            source.Pause();
+            source.clip = funny;
+            source.Play();
             nightmare = true;
             Destroy(nmFrontGround); 
             nmBackGround.gameObject.SetActive(true);
         }
+    }
+
+    void ChangePaused()
+    {
+        if (active)
+        {
+            if (!paused)
+            {
+                paused = true;
+                pauseScreen.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                paused = false;
+                pauseScreen.SetActive(false);
+                Time.timeScale = 1;
+            }
+        }
+       
     }
 
 }
