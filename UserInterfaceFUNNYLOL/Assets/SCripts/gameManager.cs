@@ -28,6 +28,7 @@ public class gameManager : MonoBehaviour
     private int nmCooldown = 3;
     public GameObject nmBackGround;
     public GameObject nmFrontGround;
+    private bool allNm;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,35 +48,44 @@ public class gameManager : MonoBehaviour
     {
         while (active)
         {
-            yield return new WaitForSeconds(spawnRate);
-            int index = Random.Range(0, targets.Length);
-            int nmIndex = Random.Range(0, nmTargets.Length);
-             
-            if (nightmare)
+            if (allNm)
             {
-                if (nmChance == Random.Range(1, nmCap) && nmCooldown == 0)
-                {
-                    Instantiate(nmTargets[nmIndex]);
-                    nmCap = 10;
-                    nmCooldown = 12;
-                }
-                else
-                {
-                    if (nmCooldown <= 10)
-                    {
-                        Instantiate(targets[index]);
-                        nmCap--;
-                    }
-                    
-                    if (nmCooldown != 0)
-                    {
-                        nmCooldown--;
-                    }
-                }
+                yield return new WaitForSeconds(spawnRate);
+                int nmIndex = Random.Range(0, nmTargets.Length);
+                Instantiate(nmTargets[nmIndex]);
             }
             else
             {
-                Instantiate(targets[index]);
+                yield return new WaitForSeconds(spawnRate);
+                int index = Random.Range(0, targets.Length);
+                int nmIndex = Random.Range(0, nmTargets.Length);
+
+                if (nightmare)
+                {
+                    if (nmChance == Random.Range(1, nmCap) && nmCooldown == 0)
+                    {
+                        Instantiate(nmTargets[nmIndex]);
+                        nmCap = 10;
+                        nmCooldown = 12;
+                    }
+                    else
+                    {
+                        if (nmCooldown <= 10)
+                        {
+                            Instantiate(targets[index]);
+                            nmCap--;
+                        }
+
+                        if (nmCooldown != 0)
+                        {
+                            nmCooldown--;
+                        }
+                    }
+                }
+                else
+                {
+                    Instantiate(targets[index]);
+                }
             }
         }
     }
@@ -93,7 +103,7 @@ public class gameManager : MonoBehaviour
             
         
         health -= val;
-        Debug.Log(health);
+        
         if (health == 0)
         {
             gameOverText.gameObject.SetActive(true);
@@ -108,7 +118,7 @@ public class gameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void StartGame(float difficulty, bool nm)
+    public void StartGame(float difficulty, bool nm, bool all)
     {
         spawnRate *= difficulty;
         active = true;
@@ -124,6 +134,10 @@ public class gameManager : MonoBehaviour
             nightmare = true;
             Destroy(nmFrontGround); 
             nmBackGround.gameObject.SetActive(true);
+        }
+        if (all)
+        {
+            allNm = true;
         }
     }
 

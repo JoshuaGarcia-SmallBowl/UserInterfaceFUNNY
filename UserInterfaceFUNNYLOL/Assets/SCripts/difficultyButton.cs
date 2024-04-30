@@ -9,6 +9,8 @@ public class difficultyButton : MonoBehaviour
     private gameManager gameManager;
     public float difficulty;
     public bool nightmare = false;
+    public bool allNightmare = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,6 @@ public class difficultyButton : MonoBehaviour
 
     private void SetDifficulty()
     {
-        gameManager.StartGame(difficulty, nightmare);
+        gameManager.StartGame(difficulty, nightmare, allNightmare);
     }
 }
