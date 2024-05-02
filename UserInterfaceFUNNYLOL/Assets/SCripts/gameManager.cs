@@ -66,7 +66,7 @@ public class gameManager : MonoBehaviour
                     {
                         Instantiate(nmTargets[nmIndex]);
                         nmCap = 10;
-                        nmCooldown = 12;
+                        nmCooldown = 11;
                     }
                     else
                     {
@@ -121,10 +121,10 @@ public class gameManager : MonoBehaviour
     public void StartGame(float difficulty, bool nm, bool all)
     {
         spawnRate *= difficulty;
-        active = true;
+        
         scoreText.gameObject.SetActive(true);
         livesText.gameObject.SetActive(true);
-        StartCoroutine(SpawnTarget());
+        
         Destroy(title);
         if (nm)
         {
@@ -139,6 +139,8 @@ public class gameManager : MonoBehaviour
         {
             allNm = true;
         }
+        active = true;
+        StartCoroutine(SpawnTarget());
     }
 
     void ChangePaused()
