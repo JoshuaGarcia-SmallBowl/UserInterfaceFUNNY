@@ -24,16 +24,23 @@ public class Target : MonoBehaviour
     public int damage = 1;
     public bool dodge ;
     public int healAmt = 0;
+    public bool summon;
     // Start is called before the first frame update
     void Start()
     {
         targetRb = GetComponent<Rigidbody>();
-        targetRb.AddForce(RandomForce() * startthrow, ForceMode.Impulse);
+        if (startthrow < 10.0f)
+        {
+            targetRb.AddForce(RandomForce() * startthrow, ForceMode.Impulse);
+        }
+ 
+        
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
-        if (startthrow == 1.0f)
+        if (startthrow >= 1.0f)
         {
             transform.position = RandomSpawnPos();
         }
+        
         
         gameManager = GameObject.Find("Manager").GetComponent<gameManager>();
     }
@@ -55,7 +62,15 @@ public class Target : MonoBehaviour
     }
     Vector3 RandomSpawnPos()
     {
-        return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
+        if (startthrow < 10.0f)
+        {
+            return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
+        }
+        else
+        {
+            return new Vector3(Random.Range(-xRange, xRange), 14);
+        }
+        
     }
 
     private void OnMouseDown()
@@ -67,6 +82,14 @@ public class Target : MonoBehaviour
             //destroy if no more health is left
             if (health == 0)
             {
+                if (summon)
+                {
+                    Instantiate(spawnPrefab, new(transform.position.x - 1, transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(spawnPrefab, new(transform.position.x - 1, transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(spawnPrefab, new(transform.position.x - 1, transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(spawnPrefab, new(transform.position.x - 1, transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(spawnPrefab, new(transform.position.x - 1, transform.position.y, transform.position.z), transform.rotation);
+                }
                 if (healAmt > 0)
                 {
                     
