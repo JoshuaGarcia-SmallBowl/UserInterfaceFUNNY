@@ -614,7 +614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -136, y: -54}
+  m_AnchoredPosition: {x: -100, y: -25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &433862679
@@ -3216,7 +3216,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 145, y: -58}
+  m_AnchoredPosition: {x: 100, y: -25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1641177268
@@ -4681,9 +4681,8 @@ MonoBehaviour:
   - {fileID: 9063995117531080112, guid: 7fef6ade0f7904e4d9d3b7dc4cb2b5be, type: 3}
   - {fileID: 9063995117531080112, guid: 24f390c0a2042ca48b8f8f24eafe1a23, type: 3}
   - {fileID: 9063995117531080112, guid: 529f12e773227714f8e210ee3d763957, type: 3}
-  - {fileID: 9063995117531080112, guid: a0d4ad8fceb50f449b351af58b8ce9e0, type: 3}
   pauseScreen: {fileID: 1667415764}
-  funny: {fileID: 8300000, guid: 78ce4094a3edc2241a4aad330413322f, type: 3}
+  funny: {fileID: 8300000, guid: f3a693dfca49f86428a4a94c89774ed2, type: 3}
   scoreText: {fileID: 1641177268}
   gameOverText: {fileID: 1860186390}
   livesText: {fileID: 422341616}
