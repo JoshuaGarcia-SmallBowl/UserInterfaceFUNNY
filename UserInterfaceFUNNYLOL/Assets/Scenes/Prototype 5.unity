@@ -4545,7 +4545,7 @@ MonoBehaviour:
   - {fileID: 9063995117531080112, guid: 24f390c0a2042ca48b8f8f24eafe1a23, type: 3}
   - {fileID: 9063995117531080112, guid: 529f12e773227714f8e210ee3d763957, type: 3}
   pauseScreen: {fileID: 1667415764}
-  funny: {fileID: 8300000, guid: f3a693dfca49f86428a4a94c89774ed2, type: 3}
+  funny: {fileID: 8300000, guid: 78ce4094a3edc2241a4aad330413322f, type: 3}
   scoreText: {fileID: 1641177268}
   gameOverText: {fileID: 1860186390}
   livesText: {fileID: 422341616}
