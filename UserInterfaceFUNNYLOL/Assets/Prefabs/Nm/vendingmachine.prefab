@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66aa2f5fc9e559644a85e63fe49565ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: {fileID: 6601538019107920666, guid: 70a1428e5f80a4866a779ef1ab9fe521, type: 3}
+  particles: {fileID: 4758139293545943008, guid: c7ad2532a6eeb40b59033c75e71fa054, type: 3}
   spawnPrefab: {fileID: 9063995117531080112, guid: 10125e9e4ee123e45a82888248ef8286, type: 3}
   points: 15
   health: 2

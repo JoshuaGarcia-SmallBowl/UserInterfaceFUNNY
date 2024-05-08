@@ -146,10 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66aa2f5fc9e559644a85e63fe49565ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: {fileID: 6601538019107920666, guid: 70a1428e5f80a4866a779ef1ab9fe521, type: 3}
+  particles: {fileID: 7303472089845130122, guid: 6cbc21f5e9162483993a2b84b14d5ac8, type: 3}
   spawnPrefab: {fileID: 9063995117531080112, guid: 92938dd82eb0fa244ac022114c017f5b, type: 3}
   points: 10
   health: 3
   startthrow: 0.5
   split: 0
   damage: 1
+  dodge: 0
+  healAmt: 0
